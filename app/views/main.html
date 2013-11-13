@@ -1,0 +1,69 @@
+<!-- <div class="hero-unit">
+  <h1>'Allo, 'Allo!</h1>
+  <p>You now have</p>
+  <ul>
+      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+  </ul>
+  <p>installed.</p>
+  <h3>Enjoy coding! - Yeoman</h3>
+</div> -->
+<div ng-controller="MarkerController">
+	<div><input type="text" ng-model="markers.osloMarker.message" /></div>
+	<h3>{{markers.osloMarker.message}}</h3>
+	<div>
+	    <leaflet markers="markers" center="osloCenter"></leaflet>
+	</div>
+</div>
+<div ng-controller="ProjectsController">
+	
+	<form class="form-horizontal">
+		<input type="text" ng-model="projectOwner" />
+		<input type="text" ng-model="projectFunder" />
+		<input type="text" ng-model="projectContractValue" />
+
+		<button class="btn" ng-click="addProject()"><i class="icon-plus"></i> Add</button>
+	</form>
+	<table class="table table-striped table-responsive table-hover" style="z-index:9999;">
+		<thead>
+			<tr><th>Owner</th><th>Funder</th><th>Contract Value</th></tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="project in projects"><td>{{project.owner}}</td><td>{{project.funder}}</td><td>{{project.contractValue}} <button data-toggle="modal" data-target="#myModal" class="btn">Details</button>
+				<button onclick="$('#currentProject').val('{{project}}')">Click me</button>
+			</td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="text" ng-model="currentProject" id="currentProject" />
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>{{currentProject.projectNumber}}</h3>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped table-responsive table-condensed table-hover">
+						<tr><td class="row-title">Project Owner:</td><td>{{currentProject.owner}}</td></tr>
+						<tr><td class="row-title">International:</td><td>{{currentProject.international}}</td></tr>
+						<tr><td class="row-title">Project Number:</td><td>{{currentProject.projectNumber}}</td></tr>
+						<tr><td class="row-title">Contract Value:</td><td>{{currentProject.contractValue}}</td></tr>
+						<tr><td class="row-title">Funding:</td><td>{{currentProject.funding}}</td></tr>
+						<tr><td class="row-title">Contract Type:</td><td>{{currentProject.contractType}}</td></tr>
+						<tr><td class="row-title">Point of Contact:</td><td>{{currentProject.contact}}</td></tr>
+						<tr><td class="row-title">Start Date:</td><td>{{currentProject.startDate}}</td></tr>
+						<tr><td class="row-title">End Date:</td><td>{{currentProject.endDate}}</td></tr>
+						<tr><td class="row-title">Client:</td><td>{{currentProject.client}}</td></tr>
+						<tr><td class="row-title">Funder:</td><td>{{currentProject.funder}}</td></tr>
+						<tr><td class="row-title">Countries:</td><td>{{currentProject.countries}}</td></tr>
+						<tr><td class="row-title">Region:</td><td>{{currentProject.region}}</td></tr>
+						<tr><td class="row-title">Keywords:</td><td>{{currentProject.keywords}}</td></tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>
